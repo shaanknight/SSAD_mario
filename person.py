@@ -5,26 +5,26 @@ from config import AlarmException, _getChUnix
 from board import Board
 from drawnext import paintempty,paintfill
 
-class char():
+class ppl():
 
 	str = []
 	pos = []
 
-class Mario(char):
+class Mario(ppl):
 
 	def __init__(self):
 
 		self.str.append(['o','o'])
 		self.str.append(['v','v'])
 		self.pos.append(26)
-		self.pos.append(16)
+		self.pos.append(6)
 
-	def draw(self, box):
+	def draw(self, box, org):
 		for i in range(len(self.str)):
 			for j in range(len(self.str[i])):
-				box[self.pos[0]+i][self.pos[1]+j] = self.str[i][j]
+				box[self.pos[0]+i][org[0]+self.pos[1]+j] = self.str[i][j]
 
-	def move(self, board, box):
+	def move(self, board, box, org):
 
 		def alarmhandler(signum, frame):
 			raise AlarmException
@@ -48,42 +48,42 @@ class Mario(char):
 			quit()
 
 		if c == 'd':
-			paintempty(self,box)
-			self.pos[1] = self.pos[1] + 1
-			paintfill(self,box)
+			paintempty(self,box,org)
+			org[0] = org[0] + 1
+			paintfill(self,box,org)
 
 		if c == 'a':
-			paintempty(self,box)
-			self.pos[1] = self.pos[1] - 1
-			paintfill(self,box)
+			paintempty(self,box,org)
+			org[0] = org[0] - 1
+			paintfill(self,box,org)
 
 		if c == 'w':
 			for i in range(6):
 				d = 'p'
 				d = action()
 				os.system("tput reset")
-				paintempty(self,box)
+				paintempty(self,box,org)
 				self.pos[0] = self.pos[0] - 1
 				if d == 'd':
-					self.pos[1] = self.pos[1] + 1
+					org[0] = org[0] + 1
 				elif d == 'a' :
-					self.pos[1] = self.pos[1] - 1
-				paintfill(self,box)
-				board.draw()
+					org[0] = org[0] - 1
+				paintfill(self,box,org)
+				board.draw(org)
 				time.sleep(0.06) 
 
 			for i in range(6):
 				d = 'p'
 				d = action()
 				os.system("tput reset")
-				paintempty(self,box)
+				paintempty(self,box,org)
 				self.pos[0] = self.pos[0] + 1
 				if d == 'd':
-					self.pos[1] = self.pos[1] + 1
+					org[0] = org[0] + 1
 				elif d == 'a' :
-					self.pos[1] = self.pos[1] - 1
-				paintfill(self,box)
-				board.draw()
+					org[0] = org[0] - 1
+				paintfill(self,box,org)
+				board.draw(org)
 				time.sleep(0.06)
 
 
