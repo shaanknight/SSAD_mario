@@ -1,7 +1,7 @@
 import os
 
 from board import Board
-from person import char,Mario
+from person import ppl,Mario
 
 board = Board()
 mario = Mario()
