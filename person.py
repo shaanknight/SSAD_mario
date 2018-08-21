@@ -17,7 +17,7 @@ class Mario(char):
 		self.str.append(['o','o'])
 		self.str.append(['v','v'])
 		self.pos.append(26)
-		self.pos.append(6)
+		self.pos.append(16)
 
 	def draw(self, box):
 		for i in range(len(self.str)):
@@ -58,36 +58,33 @@ class Mario(char):
 			paintfill(self,box)
 
 		if c == 'w':
-			for i in range(3):
-				os.system("tput reset")
-				paintempty(self,box)
-				self.pos[0] = self.pos[0] - 2
+			for i in range(6):
 				d = 'p'
 				d = action()
+				os.system("tput reset")
+				paintempty(self,box)
+				self.pos[0] = self.pos[0] - 1
 				if d == 'd':
 					self.pos[1] = self.pos[1] + 1
 				elif d == 'a' :
 					self.pos[1] = self.pos[1] - 1
-
 				paintfill(self,box)
 				board.draw()
 				time.sleep(0.06) 
 
-			for i in range(3):
-				os.system("tput reset")
-				paintempty(self,box)
-				self.pos[0] = self.pos[0] + 2
+			for i in range(6):
 				d = 'p'
 				d = action()
+				os.system("tput reset")
+				paintempty(self,box)
+				self.pos[0] = self.pos[0] + 1
 				if d == 'd':
 					self.pos[1] = self.pos[1] + 1
 				elif d == 'a' :
 					self.pos[1] = self.pos[1] - 1
-
 				paintfill(self,box)
 				board.draw()
 				time.sleep(0.06)
-
 
 
 

@@ -1,6 +1,6 @@
 class Board:
 
-	box = [[' ' for j in range(80)] for i in range(32)]
+	box = [[' ' for j in range(80)] for i in range(10,42)]
 
 	def __init__(self):
 		
@@ -12,11 +12,11 @@ class Board:
 				self.box[i][j+3] = '_'
 
 				if i == 0 or i == 1 or i==2:
-					self.box[31-i][j] = '|'
+					self.box[41-i][j] = '|'
 
-				self.box[31-i][j+1] = '_'
-				self.box[31-i][j+2] = '_'
-				self.box[31-i][j+3] = '_'
+				self.box[41-i][j+1] = '_'
+				self.box[41-i][j+2] = '_'
+				self.box[41-i][j+3] = '_'
 
 	def draw(self):
 
