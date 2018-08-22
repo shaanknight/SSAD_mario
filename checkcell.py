@@ -1,7 +1,17 @@
 def checkh(self, vir, org, rem):
-	if (vir[self.pos[0]][org[0] + self.pos[1] + rem] == -1) or  (vir[self.pos[0] + 1][org[0] + self.pos[1] + rem] == -1) :
-		return -1
-	elif (vir[self.pos[0]][org[0] + self.pos[1] + rem] == 0) or  (vir[self.pos[0] + 1][org[0] + self.pos[1] + rem] == 0) :
-		return 0
-	else :
-		return 1
+	fl = 1
+	for i in range(2):
+		for j in range(2):
+			if vir[self.pos[0] + i][org[0] + self.pos[1] + j + rem] == -1 :
+				return -1
+			fl = fl*vir[self.pos[0] + i][org[0] + self.pos[1] + j + rem]
+	return fl
+
+def checkv(self, vir, org, rem):
+	fl = 1
+	for i in range(2):
+		for j in range(2):
+			if vir[self.pos[0] + rem + i][org[0] + self.pos[1] + j] == -1 :
+				return -1
+			fl = fl*vir[self.pos[0] + rem + i][org[0] + self.pos[1] + j]
+	return fl

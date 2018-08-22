@@ -4,11 +4,16 @@ import time
 from config import AlarmException, _getChUnix 
 from board import Board
 from drawnext import paintempty,paintfill
-from checkcell import checkh
+from checkcell import checkh,checkv
 
 class ppl():
 
 	str = []
+	pos = []
+
+class enm():
+
+	cfr = []
 	pos = []
 
 class Mario(ppl):
@@ -65,30 +70,56 @@ class Mario(ppl):
 				quit()
 
 		if c == 'w':
-			for i in range(6):
+			while True:
 				d = 'p'
 				d = action()
+				rem = 0
+				if d == 'd' :
+					rem = 1
+				elif d == 'a' :
+					rem = -1
+				org[0] = org[0] + rem 
+				res = checkv(self,vir,org,-1)
+				org[0] = org[0] - rem
+				if res == -1:
+					quit()
+				if res == 0:
+					break
 				os.system("tput reset")
 				paintempty(self,box,org)
 				self.pos[0] = self.pos[0] - 1
-				if d == 'd':
-					org[0] = org[0] + 1
-				elif d == 'a' :
-					org[0] = org[0] - 1
+				org[0] = org[0] + rem
 				paintfill(self,box,org)
 				board.draw(org)
 				time.sleep(0.06) 
 
-			for i in range(6):
+				if self.pos[0] == 21 :
+					break
+
+
+			while True:
 				d = 'p'
 				d = action()
+				rem = 0
+				if d == 'd' :
+					rem = 1
+				elif d == 'a' :
+					rem = -1
+				org[0] = org[0] + rem 
+				res = checkv(self,vir,org,1)
+				org[0] = org[0] - rem
+				if res == -1:
+					quit()
+				if res == 0:
+					break
 				os.system("tput reset")
 				paintempty(self,box,org)
 				self.pos[0] = self.pos[0] + 1
-				if d == 'd':
-					org[0] = org[0] + 1
-				elif d == 'a' :
-					org[0] = org[0] - 1
+				org[0] = org[0] + rem
 				paintfill(self,box,org)
 				board.draw(org)
 				time.sleep(0.06)
+
+				if self.pos[0] == 26 :
+					break
+

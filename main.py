@@ -4,14 +4,15 @@ import random
 from board import Board
 from person import ppl,Mario
 from background import Tree,Cloud
-from enemy import Enemy1,Enemy2
+from obstacles import Cactus,Brick
 
 board = Board()
 mario = Mario()
 org = [0]
 arr_trp = []
 arr_cld = []
-arr_enm = []
+arr_cct = []
+arr_brk = []
 
 while True :
 	os.system("tput reset")
@@ -43,22 +44,31 @@ while True :
 		arr_cld.append(cld)
 		cld.draw(board.box, org)
 
-	#random enemy generation
-	exran = (random.randint(1,10))%2
-	if exran == 1 :
-		enm = Enemy1()
-	else :
-		enm = Enemy2()
-	if arr_enm == [] :
-		arr_enm.append(enm)
-		enm.draw(board.box, board.vir, org)
+	cct = Cactus()
 
-	else :
-		for i in arr_enm :
-			if abs(enm.pos_y - i.pos_y) > 20:
-				if len(arr_enm) <= 10 :
-					enm.draw(board.box, board.vir, org)
-					arr_enm.append(enm)
+	if arr_cct != []:
+		for i in arr_cct:
+			if abs(cct.pos_y - i.pos_y) > 10:
+				if len(arr_cct) <= 20:
+					cct.draw(board.box, board.vir, org)
+					arr_cct.append(cct)
+
+	else:
+		arr_cct.append(cct)
+		cct.draw(board.box,board.vir,org)
+	
+	brk = Brick()
+
+	if arr_brk != []:
+		for i in arr_brk :
+			if abs(brk.pos_y - i.pos_y) > 10:
+				if len(arr_brk) <= 20:
+					brk.draw(board.box, board.vir, org)
+					arr_brk.append(brk)
+
+	else:
+		arr_brk.append(brk)
+		brk.draw(board.box,board.vir,org)
 
 	
 	board.draw(org)
