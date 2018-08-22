@@ -4,6 +4,7 @@ import time
 from config import AlarmException, _getChUnix 
 from board import Board
 from drawnext import paintempty,paintfill
+from checkcell import checkh
 
 class ppl():
 
@@ -24,7 +25,7 @@ class Mario(ppl):
 			for j in range(len(self.str[i])):
 				box[self.pos[0]+i][org[0]+self.pos[1]+j] = self.str[i][j]
 
-	def move(self, board, box, org):
+	def move(self, board, box, vir, org):
 
 		def alarmhandler(signum, frame):
 			raise AlarmException
@@ -48,14 +49,20 @@ class Mario(ppl):
 			quit()
 
 		if c == 'd':
-			paintempty(self,box,org)
-			org[0] = org[0] + 1
-			paintfill(self,box,org)
+			if checkh(self,vir,org,1) == 1 :
+				paintempty(self,box,org)
+				org[0] = org[0] + 1
+				paintfill(self,box,org)
+			elif checkh(self,vir,org,1) == -1:
+				quit()
 
 		if c == 'a':
-			paintempty(self,box,org)
-			org[0] = org[0] - 1
-			paintfill(self,box,org)
+			if checkh(self,vir,org,-1) == 1:
+				paintempty(self,box,org)
+				org[0] = org[0] - 1
+				paintfill(self,box,org)
+			elif checkh(self,vir,org,-1) == -1:
+				quit()
 
 		if c == 'w':
 			for i in range(6):
