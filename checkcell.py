@@ -1,3 +1,5 @@
+''' utility functions to check the status of exact next position reached by mario horizontally as well as vertically ''' 
+
 def checkh(self, vir, org, rem):
 	fl = 1
 	for i in range(2):

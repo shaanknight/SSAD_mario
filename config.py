@@ -1,3 +1,5 @@
+''' Non blocking input handled here '''
+
 class AlarmException(Exception):
     pass
 
